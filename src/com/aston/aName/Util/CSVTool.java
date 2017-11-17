@@ -23,14 +23,6 @@ public class CSVTool {
             while ((line = br.readLine()) != null) {
             
             lineStorage.add(line);
-
-//               //use comma as separator
-//                String[] lineArray = line.split(SplitterDelimiter);
-//                
-//                System.out.println(line);
-//
-//                System.out.println("Line [ID = " + lineArray[0] + " , Type = " + lineArray[1] + " , Name = " + lineArray[2] + "]");
-
             }
 
         } 
