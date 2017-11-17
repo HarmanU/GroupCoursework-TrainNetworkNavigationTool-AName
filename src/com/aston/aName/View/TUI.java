@@ -1,7 +1,5 @@
 package com.aston.aName.View;
 
-
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 import com.aston.aName.Util.CSVTool;
 
@@ -55,7 +53,7 @@ public class TUI {
 	 System.out.println("Goodbye!");	
 	}
 	
-	public void commands(){
+	public void commands() {
 		System.out.println("Following commands are available: ");
 		System.out.println("[1] Find terminal in common");
 		System.out.println("[2] Find path between two terminals");
