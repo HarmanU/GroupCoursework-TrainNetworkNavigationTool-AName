@@ -10,11 +10,9 @@ public class ApplicationStarter {
 	
 	public static void main(String[] args) {
 		CSVTool.CSVToStringList();
-//<<<<<<< HEAD
 		TUI tui = new TUI(scan);
 		tui.textUserInterface();
 
-//=======
 		System.out.println(CSVTool.getCurrentPath());
 		
 		System.out.println("");
@@ -23,7 +21,6 @@ public class ApplicationStarter {
 		{
 			System.out.println(s);
 		}
-//>>>>>>> branch 'master' of https://github.com/HarmanU/DataStructuresCoursework-AName.git
 	}
 
 }
