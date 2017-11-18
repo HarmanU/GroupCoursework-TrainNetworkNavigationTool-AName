@@ -50,7 +50,8 @@ public class CSVTool {
             }
         }
         
-        System.out.println("Load Successful");
+        System.out.println("Loaded CSV File from " + csvFilePath);
+        System.out.println("");
         
         lastFileReadStorage = lineStorage;
         

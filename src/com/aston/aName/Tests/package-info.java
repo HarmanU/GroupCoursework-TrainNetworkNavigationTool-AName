@@ -7,4 +7,4 @@
  * Contains Tests for Utilities
  *
  */
-package com.aston.aName.Util.Tests;
+package com.aston.aName.Tests;

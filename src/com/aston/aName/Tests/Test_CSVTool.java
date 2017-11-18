@@ -1,4 +1,4 @@
-package com.aston.aName.Util.Tests;
+package com.aston.aName.Tests;
 
 import static org.junit.Assert.*;
 
