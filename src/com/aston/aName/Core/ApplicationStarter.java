@@ -4,7 +4,8 @@ import java.util.Date;
 import java.util.Scanner;
 
 import com.aston.aName.Util.CSVTool;
-import com.aston.aName.View.TUI;
+import com.aston.aName.View.TUI2;
+import com.aston.aName.View.TUIController;
 
 public class ApplicationStarter {
 	
@@ -24,15 +25,14 @@ public class ApplicationStarter {
 		
 		//System Start up
 		CoreSystem.generateMap(CSVTool.CSVToStringList(), DEBUG);
-		TUI tui = new TUI(scan);
+		TUIController tui = new TUIController();
 		
 		// End Timer
 		long endTime = new Date().getTime();
 		
 		System.out.println("Total Initialisation time: " + (endTime - startTime) + "ms");
 		System.out.println("");
-		
-		tui.textUserInterface();
+		TUI2 tui2 = new TUI2(tui);
 	}
 
 }
