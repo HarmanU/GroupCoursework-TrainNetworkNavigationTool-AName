@@ -1,10 +1,11 @@
 package com.aston.aName.View;
 
+import com.aston.aName.Core.CoreSystem;
 import com.aston.aName.Util.Controller;
 
 public class TUIController implements Controller{
 
-	public TUIController() {
+	public TUIController(CoreSystem model) {
 
 	}
 

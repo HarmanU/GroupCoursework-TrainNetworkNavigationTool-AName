@@ -25,7 +25,7 @@ public class ApplicationStarter {
 		
 		//System Start up
 		CoreSystem.generateMap(CSVTool.CSVToStringList(), DEBUG);
-		TUIController tui = new TUIController();
+		TUIController tui = new TUIController(CoreSystem.getInstance());
 		
 		// End Timer
 		long endTime = new Date().getTime();
