@@ -11,7 +11,8 @@ public class TUIController implements Controller{
 	@Override
 	public String listAllTermini() {
 		// TODO Auto-generated method stub
-		return "Not Implemented";
+		
+		return null;
 	}
 
 	@Override
