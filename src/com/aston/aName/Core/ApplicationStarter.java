@@ -23,7 +23,12 @@ public class ApplicationStarter {
 		
 		//System Start up
 		CoreSystem.generateMap(CSVTool.CSVToStringList(), DEBUG);
+//<<<<<<< HEAD
 
+//=======
+		TUIController tui = new TUIController(CoreSystem.getInstance());
+		CoreSystem.Termini();
+//>>>>>>> branch 'master' of https://github.com/HarmanU/DataStructuresCoursework-AName.git
 		
 		// End Timer
 		long endTime = new Date().getTime();

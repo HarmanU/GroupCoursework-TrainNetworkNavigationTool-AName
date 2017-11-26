@@ -4,10 +4,28 @@ import java.util.ArrayList;
 
 public class CoreSystem {
 	
-	private static ArrayList<Line> linesInSystem = new ArrayList<Line>();
+	private static CoreSystem instance;
 	
+	private static ArrayList<Line> linesInSystem = new ArrayList<Line>();	
 	private static ArrayList<Station> stationsInSystem = new ArrayList<Station>();
 	
+	//----------------------------------------------------- Ensures single Instance -----------------------------------------------------
+	private CoreSystem()
+	{
+		
+	}
+	
+	static
+	{
+		instance = new CoreSystem();
+	}
+	
+	public static CoreSystem getInstance()
+	{
+		return instance;
+	}
+	
+	//-----------------------------------------------------|-----------------------|-----------------------------------------------------
 	
 	public static void generateMap(ArrayList<String> CSVData, boolean debug)
 	{
@@ -84,4 +102,11 @@ public class CoreSystem {
 			l.refreshLines();
 		}
 	}
+	
+	public static void Termini(){
+		TerminiNode t = new TerminiNode(linesInSystem);
+	}
+
+
+	
 }
