@@ -25,11 +25,29 @@ public class Line
 		connectedLines.put(connectingLine, connectingStation);
 	}
 	
-	public void refreshLines()
+	public void registerLine()
 	{
 		for (Station s : stationsOnLine)
 		{
 			s.addConnectedLine(this);
+		}
+	}
+	
+	// operation will be total O(N^3)
+	public void registerConnectedLines()
+	{
+		for (Station s : stationsOnLine)
+		{
+			if (!(s.getConnectedLines().size() <= 1) )
+			{
+				for (Line l : s.getConnectedLines())
+				{
+					if (!(l.equals(this)))
+					{
+						connectedLines.put(l, s);
+					}
+				}
+			}
 		}
 	}
 	
@@ -69,7 +87,7 @@ public class Line
 		return sb.toString();
 	}
 	
-	// Will ensure the Station's name is used to check for equality
+	// Will ensure the Station's name is used to check for equality. Can accept a line or String Object
 	public boolean equals(Object o)
 	{
 	    if (o instanceof Line)
@@ -77,6 +95,15 @@ public class Line
 	        Line temp = (Line) o;
 	        
 	        if (this.lineName.equals(temp.getLineName()))
+	        {
+	            return true;
+	        }
+	    }
+	    else if (o instanceof String)
+	    {
+	    	String temp = (String) o;
+	    	
+	        if (this.lineName.equals(temp))
 	        {
 	            return true;
 	        }
