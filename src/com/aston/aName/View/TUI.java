@@ -12,12 +12,12 @@ import com.aston.aName.Util.*;
  * @author S H S Wong
  * @version 15/10/2017
  */
-public class TUI2 {
+public class TUI {
 
 	private Controller controller;  
 	private Scanner stdIn;
 	
-	public TUI2(Controller controller) {
+	public TUI(Controller controller) {
 		
 		this.controller = controller;
 		
