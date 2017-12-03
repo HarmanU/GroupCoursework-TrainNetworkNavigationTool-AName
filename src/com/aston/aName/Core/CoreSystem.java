@@ -121,7 +121,8 @@ public class CoreSystem implements Controller{
 	}
 	
 	public static void Termini(){
-		TerminiNode t = new TerminiNode(linesInSystem);
+		TerminiNode t = new TerminiNode();
+		
 	}
 
 	@Override
