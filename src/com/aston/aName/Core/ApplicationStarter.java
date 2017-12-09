@@ -27,7 +27,7 @@ public class ApplicationStarter {
 		
 		//TUIController tui = new TUIController(CoreSystem.getInstance());
 		
-		CoreSystem.Termini();
+		
 		
 		// End Timer
 		long endTime = new Date().getTime();
