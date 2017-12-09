@@ -4,66 +4,60 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class TerminiNode {
-	private DoubleNode<Station> StationsOnLine;
-	private DoubleList<Line> lines;
-	private ArrayList<DoubleNode<Station>> container;
+	private DoubleNode<Station> stationNode;
+	private DoubleList<Line> lines;//lines in list
+	private DoubleNode<Station> reverseStation;//allows reverse traversal
 
 	public TerminiNode(){
-		container = new ArrayList<>();
-		lines = new LineList();
+		lines = new LineList(CoreSystem.getLinesinSystem());
 		addStationsToNode();
-		goThroughNode();
 	}
 
 	//adds stations to node
 	private void addStation(Station s){
-
-
 		DoubleNode<Station> node = new DoubleNode<Station>(s);//next node to add to link
 
-		node.setNext(StationsOnLine);//new nodes next is previous node (lastNode)
-		if(StationsOnLine != null){
-			StationsOnLine.setPrevious(node);
+		node.setNext(stationNode);//new nodes next is previous node (lastNode)
+
+		if(stationNode == null){//reverseStation points to last node, allows reverse traversal
+			reverseStation = node;
+		}
+		if(stationNode != null){
+			stationNode.setPrevious(node);
 		}
 
-		StationsOnLine = node;//lastNode points to newly added node/
+		stationNode = node;//lastNode points to newly added node/
 
 	}
 
-
-	//needs fixing
+	//add stations to node
 	private void addStationsToNode(){
-		Iterator<Line> temp = lines.iterator();
-		ArrayList<Station> stations = null;
-		DoubleNode<Station> nodeToAdd = null;
 
-		while(temp.hasNext()){
-			stations = temp.next().getStationsOnLine();
-			for(Station element : stations){
-				DoubleNode<Station> node = new DoubleNode<Station>(element);
-				nodeToAdd = node;
-				
-				node.setNext(nodeToAdd);//new nodes next is previous node (lastNode)
-				if(nodeToAdd != null){
-					nodeToAdd.setPrevious(node);
-				}
-
-				nodeToAdd = node;//lastNode points to newly added node/
+		Iterator<Line> iter = lines.iterator();//itertor to iterate through lines to get stations
+		while(iter.hasNext()){
+			ArrayList<Station> stations = iter.next().getStationsOnLine();//holds stations on current line
+			for(Station element: stations){
+				addStation(element);//adds station to node
 			}
-			container.add(nodeToAdd);
 		}
 	}
 
-	//needs fixing
 	//goes through stations node
-	private void goThroughNode(){
-		/*DoubleNode<Station> current = node;
+	public void fowardTraversal(){
+		DoubleNode<Station> current = stationNode;
 		while(current != null){
 			System.out.println(current.getElement().getName());
 			current = current.getNext();
-		}*/
-		
+		}
 	}
 
-
+	//goes through nodes in reverse
+	public void reverseTraversal(){
+		System.out.println("---------------Now backWards---------------");
+		DoubleNode<Station> current = reverseStation;
+		while(current != null){
+			System.out.println(current.getElement().getName());
+			current = current.getPrevious();
+		}
+	}
 }

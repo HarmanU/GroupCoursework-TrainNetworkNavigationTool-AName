@@ -122,7 +122,8 @@ public class CoreSystem implements Controller{
 	
 	public static void Termini(){
 		TerminiNode t = new TerminiNode();
-		
+		t.fowardTraversal();
+		t.reverseTraversal();
 	}
 
 	@Override

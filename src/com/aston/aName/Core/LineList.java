@@ -6,8 +6,8 @@ import java.util.Iterator;
 public class LineList extends DoubleList<Line>{
 	private ArrayList<Line> lines;
 
-	public LineList(){
-		this.lines = CoreSystem.getLinesinSystem();		
+	public LineList(ArrayList<Line> lines){
+		this.lines = lines;		
 		goThroughLines();
 	}
 
