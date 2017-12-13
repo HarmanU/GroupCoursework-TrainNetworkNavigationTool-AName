@@ -122,11 +122,15 @@ public class CoreSystem implements Controller{
 	
 	@Override
 	public String listAllTermini() {
+		//
+		TerminiNode t = new TerminiNode();
+		t.termini();
+		//
 		
 		
-		
-		return null;
+		return t.termini();
 	}
+	
 
 	/*
 	 * Method will list all stations on a line

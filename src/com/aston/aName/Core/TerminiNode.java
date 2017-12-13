@@ -60,4 +60,23 @@ public class TerminiNode {
 			current = current.getPrevious();
 		}
 	}
+
+	//lists beginning and end point for all lines
+	public String termini(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("--------------------------- Current Query ---------------------------\n");
+		sb.append("Termini of lines are : \n");
+		Iterator<Line> iter = lines.iterator();
+
+		while(iter.hasNext()){
+			Line line = iter.next();//line being processed
+			sb.append(line.getLineName()).append(": ");//line name
+			ArrayList<Station> stat = line.getStationsOnLine();//stations on line
+			sb.append(stat.get(0).getName()).append(" to ").append(stat.get(stat.size() -1).getName());//fist is beginning and last is end
+			sb.append("\n");
+		}
+		sb.append("---------------------------------------------------------------------");
+		return sb.toString();
+	}
+
 }
