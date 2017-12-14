@@ -1,11 +1,9 @@
 package com.aston.aName.Core;
 
 import java.util.Date;
-import java.util.Scanner;
 
 import com.aston.aName.Util.CSVTool;
 import com.aston.aName.View.TUI;
-import com.aston.aName.View.TUIController;
 
 public class ApplicationStarter {
 	
