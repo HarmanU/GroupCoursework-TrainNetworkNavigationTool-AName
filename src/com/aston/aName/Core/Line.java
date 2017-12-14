@@ -37,29 +37,6 @@ public class Line extends DoubleList<Station>
 				System.out.println("Added " + stationsOnLine.get(i).getName() + " to List");
 			}
 		}
-		
-		if(first)
-		{
-			System.out.println(toString());
-			System.out.println(this.printStations());
-			System.out.println(lineName + " | ArrayList size: " + stationsOnLine.size() + " | LinkedList Size: " + this.size());
-			first = false;
-		}
-	}
-	
-	public String printStations()
-	{
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append(lineName + ": ");
-		
-		Iterator<Station> temp = iterator();
-		while(temp.hasNext())
-		{
-			sb.append(temp.next().getName() + ", ");
-		}
-		
-		return sb.toString();
 	}
 	
 	// adds a new connected line
