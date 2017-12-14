@@ -2,7 +2,6 @@ package com.aston.aName.Core;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class Line extends DoubleList<Station>
 {
@@ -12,8 +11,6 @@ public class Line extends DoubleList<Station>
 	private HashMap<Line, Station> connectedLines = new HashMap<Line, Station>();	
 	
 	private String lineName;
-	
-	private static boolean first = true;
 	
 	public Line(String lineName, ArrayList<Station> stationsOnLine)
 	{	
