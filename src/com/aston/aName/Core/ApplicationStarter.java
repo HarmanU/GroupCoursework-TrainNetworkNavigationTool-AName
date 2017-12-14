@@ -7,7 +7,7 @@ import com.aston.aName.View.TUI;
 
 public class ApplicationStarter {
 	
-	public static boolean DEBUG = true;
+	public static boolean DEBUG = false;
 	
 	public static void main(String[] args) {
 		

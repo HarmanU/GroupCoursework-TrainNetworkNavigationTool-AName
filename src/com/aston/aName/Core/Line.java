@@ -3,6 +3,13 @@ package com.aston.aName.Core;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * 
+ * Models a line with ArrayLists and DoubleLinked List
+ * 
+ * @author Harman Uppal
+ *
+ */
 public class Line extends DoubleList<Station>
 {
 	// Holds a list of stations on this line

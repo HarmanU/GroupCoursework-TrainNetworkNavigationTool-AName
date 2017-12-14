@@ -2,6 +2,12 @@ package com.aston.aName.Core;
 
 import java.util.ArrayList;
 
+/**
+ * Models a Station
+ * 
+ * @author Harman Uppal
+ *
+ */
 public class Station{
 	
 	private String stationName;

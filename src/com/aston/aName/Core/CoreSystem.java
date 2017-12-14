@@ -108,6 +108,11 @@ public class CoreSystem implements Controller{
 		}
 	}
 
+	/**
+	 * Creates links in the system
+	 * 
+	 * @param CSVData
+	 */
 	private static void createLinks(ArrayList<String> CSVData)
 	{
 		for (Line l : linesInSystem)
@@ -366,7 +371,6 @@ public class CoreSystem implements Controller{
 		{
 			// placeholder
 			sb.append("\nMulti-Line path finding not currently supported. Only paths between stations on the same line supported.");
-			
 			
 		}
 			
