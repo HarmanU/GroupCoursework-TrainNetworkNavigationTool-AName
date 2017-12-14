@@ -2,10 +2,15 @@ package com.aston.aName.Core;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Queue;
+import java.util.Stack;
 
 import com.aston.aName.Util.Controller;
 import com.sun.org.apache.xml.internal.resolver.helpers.Debug;
+
+import sun.security.krb5.internal.APOptions;
 
 public class CoreSystem implements Controller{
 	
@@ -237,9 +242,177 @@ public class CoreSystem implements Controller{
 
 	@Override
 	public String showPathBetween(String stationA, String stationB) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		
+		StringBuilder sb = new StringBuilder();
+		Station pointA = null;
+		Station pointB = null;
+		Stack<Station> path = new Stack<Station>();
+		
+		
+		sb.append("\n--------------------------- Current Query ---------------------------");
+		
+		for (Station s : stationsInSystem)
+		{
+			if (s.equals(stationA))
+			{
+				pointA = s;
+			}
+			
+			if (s.equals(stationB))
+			{
+				pointB = s;
+			}
+			
+			if (pointA != null && pointB != null)
+			{
+				if(DEBUG)
+				{
+					sb.append("Stations found: " + pointA.getName() + " and " + pointB.getName());
+				}
+				break;
+			}
+		}
+		
+		if(pointA == null)
+		{
+			sb.append("\nNo Station (" + stationA + ") found");
+		}
+		if(pointB == null)
+		{
+			sb.append("\nNo Station (" + stationB + ") found");
+		}
+		if (pointA == null || pointB == null)
+		{
+			sb.append(printStationNotFound());
+			return sb.toString();
+		}
+		
+		boolean onSameLine = false;
+		Line stationsLine = null;
+		
+		for (Line l : pointA.getConnectedLines())
+		{
+			if (pointB.getConnectedLines().contains(l))
+			{
+				stationsLine = l;
+				onSameLine = true;
+			}
+		}
+		
+		// true if the path has been connected between point A and point B
+		boolean pathComplete = false;
+		
+		boolean AComesFirst = false;
+		boolean BComesFirst = false;
+		
+		// Run this is the stations are on the same line
+		if (onSameLine)
+		{
+			
+			Iterator<Station> temp = stationsLine.iterator();
+			while(temp.hasNext() && !pathComplete)
+			{
+				Station tempS = temp.next();
+				
+				// If A is first
+				if(tempS == pointA && !BComesFirst )
+				{					
+					if(DEBUG) {sb.append("\nA is first " + pointA.getName());}
+					AComesFirst = true;
+					
+				}
+				// If B is first
+				else if (tempS == pointB && !AComesFirst )
+				{
+					
+					if(DEBUG) {sb.append("\nB is first) " + pointB.getName());}
+					BComesFirst = true;
+				}
+				
+				// If A is first
+				if(AComesFirst)
+				{
+					// if not last station
+					if (tempS != pointB)
+					{
+						// add Station it to the stack
+						path.push(tempS);
+					}
+					// if B point reached
+					else if (tempS == pointB)
+					{
+						// add point B
+						path.push(tempS);
+						
+						// path is complete
+						pathComplete = true;
+					}
+				}
+				else if(BComesFirst)
+				{
+					// if not last station
+					if (tempS != pointA)
+					{
+						// add Station it to the stack
+						path.push(tempS);
+					}
+					// if A point reached
+					else if (tempS == pointA)
+					{
+						// add point A
+						path.push(tempS);
+						pathComplete = true;
+					}
+				}
+			}
+		}
+		else
+		{
+			// placeholder
+			sb.append("\nMulti-Line path finding not currently supported. Only paths between stations on the same line supported.");
+			
+			
+		}
+			
+			
+			// if the path is complete
+			if (pathComplete)
+			{
+				sb.append("\n\nShowing Path between " + pointA.getName() + " and " + pointB.getName() + "\n");
+				
+				Stack<Station> reversePath = new Stack<Station>();
+				
+				if (AComesFirst)
+				{
+					// reverse path order
+					while(!path.isEmpty())
+					{
+						reversePath.push(path.pop());
+					}
+					
+					// path is now the reverse path
+					path = reversePath;
+				}
+				
+				while(!path.isEmpty())
+				{
+					if (path.size() > 1)
+					{
+						sb.append("\n\tO " + path.pop().getName());
+						sb.append("\n\t|\n\t|\n\t|");
+					}
+					else if (path.size() == 1)
+					{
+						sb.append("\n\tO " + path.pop().getName() + " << End >>");
+					}
+				}
+					
+
+			}
+			
+			sb.append("\n---------------------------------------------------------------------");
+			return sb.toString();
+		}
 	
 	/**
 	 * A method for printing an error message if a line was not found in a query
@@ -255,6 +428,20 @@ public class CoreSystem implements Controller{
 		for (Line l : linesInSystem)
 		{
 			sb.append("\n" + l.getLineName());
+		}	
+		return sb.toString(); 
+	}
+	
+	public String printStationNotFound()
+	{
+		StringBuilder sb = new StringBuilder();
+		
+		// If no line was found then print message and list of current valid lines
+		sb.append("\n One or more stations could not be found, ensure you typed the line name correctly including correct case");
+		sb.append("\n\nCurrent Stations include");
+		for (Station s : stationsInSystem)
+		{
+			sb.append("\n" + s.getName());
 		}	
 		return sb.toString(); 
 	}

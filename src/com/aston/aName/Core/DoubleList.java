@@ -1,7 +1,16 @@
 package com.aston.aName.Core;
 import java.util.Iterator;
 
+/**
+ * 
+ * @author Harman Uppal, Mohammed Miah
+ * 
+ * Front previous <-------- node -------- > next
+ *
+ * @param <T> Type of this list
+ */
 public abstract class DoubleList<T> {
+	
 	protected DoubleNode<T> front; // first node of this doubly linked list
 	protected DoubleNode<T> rear; // last node of this doubly linked list
 	protected int count; // size of the list
@@ -65,26 +74,44 @@ public abstract class DoubleList<T> {
 
 	/** adds the element at the head of the list */
 	protected void addFirst(T element) {
+		// Create a new node
 		DoubleNode<T> node = new DoubleNode<T>(element);
-		node.setNext(front); // link new node to rest of list
+		
+		// set its next to the current front node
+		node.setNext(front);
+		
 		front = node; // update front
+		
 		if (count == 0) // empty list
+		{
 			rear = node; // update rear
+		}
 		else
+		{
 			// make old front node’s previous link point to new node
 			front.getNext().setPrevious(node);
+		}
 		count++;
 	}
 
 	/** adds the element at the end of the list */
 	protected void addLast(T element) {
+		
+		// Create a new node
 		DoubleNode<T> node = new DoubleNode<T>(element);
+		
+		// Set previous node to the current rear node
 		node.setPrevious(rear);
+		
+		// set the rear node to this one
 		rear = node;
+		
+		// if the front is empty
 		if(front == null){
 			front = node;
 		}
 		else{
+			node.getPrevious().setNext(node);
 			node.setNext(null);
 		}	
 		count++;
@@ -107,6 +134,9 @@ public abstract class DoubleList<T> {
 		}
 	}
 
+	
+// ---------------------- GETTERS
+	
 	/** Returns first node containing the target, or null if not found */
 	protected DoubleNode<T> find(T target) {
 		DoubleNode<T> cursor = front;

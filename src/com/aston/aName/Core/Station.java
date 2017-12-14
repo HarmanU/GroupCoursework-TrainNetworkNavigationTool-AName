@@ -2,7 +2,7 @@ package com.aston.aName.Core;
 
 import java.util.ArrayList;
 
-public class Station {
+public class Station{
 	
 	private String stationName;
 	
@@ -55,6 +55,15 @@ public class Station {
 	        Station temp = (Station) o;
 	        
 	        if (this.stationName.equals(temp.getName()))
+	        {
+	            return true;
+	        }
+	    }
+	    else if (o instanceof String)
+	    {
+	    	String temp = (String) o;
+	    	
+	        if (this.stationName.equals(temp))
 	        {
 	            return true;
 	        }

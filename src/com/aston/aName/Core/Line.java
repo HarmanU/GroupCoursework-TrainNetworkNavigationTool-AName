@@ -2,21 +2,64 @@ package com.aston.aName.Core;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
-public class Line 
+public class Line extends DoubleList<Station>
 {
+	// Holds a list of stations on this line
 	private ArrayList<Station> stationsOnLine = new ArrayList<Station>();
 	
-	private HashMap<Line, Station> connectedLines = new HashMap<Line, Station>();
-	
-	
+	private HashMap<Line, Station> connectedLines = new HashMap<Line, Station>();	
 	
 	private String lineName;
 	
+	private static boolean first = true;
+	
 	public Line(String lineName, ArrayList<Station> stationsOnLine)
-	{		
+	{	
+		super();
 		this.lineName = lineName;
 		this.stationsOnLine = stationsOnLine;
+		
+		for (int i = 0; i < stationsOnLine.size(); i++)
+		{
+			if (i == 0)
+			{
+				addLast(stationsOnLine.get(i));
+			}
+			else
+			{
+				addLast(stationsOnLine.get(i));
+			}
+			
+			if (ApplicationStarter.DEBUG)
+			{
+				System.out.println("Added " + stationsOnLine.get(i).getName() + " to List");
+			}
+		}
+		
+		if(first)
+		{
+			System.out.println(toString());
+			System.out.println(this.printStations());
+			System.out.println(lineName + " | ArrayList size: " + stationsOnLine.size() + " | LinkedList Size: " + this.size());
+			first = false;
+		}
+	}
+	
+	public String printStations()
+	{
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(lineName + ": ");
+		
+		Iterator<Station> temp = iterator();
+		while(temp.hasNext())
+		{
+			sb.append(temp.next().getName() + ", ");
+		}
+		
+		return sb.toString();
 	}
 	
 	// adds a new connected line
@@ -82,7 +125,7 @@ public class Line
 		for (Station s : stationsOnLine)
 		{
 			sb.append(s.getName() + ", ");
-		}
+		}	
 		
 		return sb.toString();
 	}

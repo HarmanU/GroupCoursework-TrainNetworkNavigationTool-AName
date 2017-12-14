@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class LineList extends DoubleList<Line>{
+	
 	private ArrayList<Line> lines;
 
 	public LineList(ArrayList<Line> lines){
