@@ -2,5 +2,5 @@
 
 ## Data Structures and algorithms
 
-* Harman Uppal
-* Shamis Miah
+* Harman U
+* Shamis M
